@@ -1,0 +1,69 @@
+:root {
+  --dark-background: #0a0a0a;
+}
+
+.navbar,
+.search, .hero {
+  background-color: var(--dark-background);
+}
+
+.search {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.search svg {
+  font-size: 50px;
+  padding: 12px;
+  color: #fff;
+  background-color: #de3151;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* hero */
+
+.hero {
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.heroImg {
+  padding: 20px;
+  border: none;
+  border-radius: 35px;
+  width: 90%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.overlay h2 {
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+.overlay button {
+  border: none;
+  border-radius: 100px;
+  color: #671296;
+  background-color: #fff;
+  padding: 20px;
+  cursor: pointer;
+}
