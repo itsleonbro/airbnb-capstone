@@ -1,0 +1,29 @@
+.searchbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 8px 8px 32px;
+  border: none;
+  border-radius: 100px;
+  background-color: #fff;
+  gap: 10px;
+  width: 850px;
+  height: auto;
+}
+
+.hotels,
+.checkIn,
+.checkOut,
+.guests {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.dropdown {
+  color: #1d1d1d;
+  font-weight: 200;
+}
