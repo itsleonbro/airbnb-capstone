@@ -10,7 +10,7 @@ const NavbarDefault = () => {
       <nav>
         <div className="logo">
           <Link to="/home">
-            <img src="./src/assets/airbnb.svg" alt="airbnb logo" height={32} />
+            <img src="./src/assets/airbnb-white.svg" alt="airbnb logo" height={32} />
           </Link>
         </div>
         <div className="center-menu">
