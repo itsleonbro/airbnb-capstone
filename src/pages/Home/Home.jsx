@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Home.module.css";
 import NavbarDefault from "../../components/NavbarDefault/NavbarDefault";
 import SearchFilter from "../../components/SearchFilter/SearchFilter";
+import InspirationCard from "../../components/InspirationCard/InspirationCard";
 
 const Home = () => {
   return (
@@ -28,7 +29,20 @@ const Home = () => {
         </div>
       </div>
 
-      <main></main>
+      <main>
+        <div className={styles.tripInspirations}>
+          <h2>Inspiration for your next trip</h2>
+          {/* inspiration cards that use props to display info */}
+          <div className={styles.inspirationHotelCards}>
+            <InspirationCard title="Sandton City Hotel" distance="53" />
+            <InspirationCard title="Joburg City" distance="129" />
+            <InspirationCard title="Woodmead Hotel" distance="23" />
+            <InspirationCard title="Sandton City Hotel" distance="8" />
+          </div>
+        </div>
+
+        <div className={styles.experiences}></div>
+      </main>
       <footer></footer>
     </>
   );

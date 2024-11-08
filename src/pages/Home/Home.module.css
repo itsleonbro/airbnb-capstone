@@ -2,8 +2,14 @@
   --dark-background: #0a0a0a;
 }
 
+/* header */
+.navbar {
+  padding: 20px 80px;
+}
+
 .navbar,
-.search, .hero {
+.search,
+.hero {
   background-color: var(--dark-background);
 }
 
@@ -25,10 +31,6 @@
 }
 
 /* hero */
-
-.hero {
-}
-
 .imageContainer {
   display: flex;
   justify-content: center;
@@ -67,3 +69,17 @@
   padding: 20px;
   cursor: pointer;
 }
+
+/* main */
+/* inspiration hotels */
+.tripInspirations {
+  padding: 20px 80px;
+}
+
+.inspirationHotelCards {
+  padding: 30px 0;
+  display: flex;
+  gap: 20px;
+}
+
+/* experiences */
