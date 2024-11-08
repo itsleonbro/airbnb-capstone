@@ -1,0 +1,8 @@
+/* variables for common styles */
+:root {
+  --grey-text: #4b5563;
+  --dark-background: #0a0a0a;
+  --pink: #de3151;
+  --blue: #4153f5;
+  --section-padding: 20px 80px;
+}
