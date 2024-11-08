@@ -1,0 +1,18 @@
+.footer {
+  padding: 20px 80px;
+}
+
+.footerContainer {
+  display: flex;
+  gap: 100px;
+}
+
+.footerContainer h2 {
+  font-weight: 500;
+}
+
+.footerContainer ul li {
+  list-style: none;
+  color: var(--grey-text);
+  padding: 10px 0;
+}
