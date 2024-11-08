@@ -3,6 +3,7 @@ import styles from "./Home.module.css";
 import NavbarDefault from "../../components/NavbarDefault/NavbarDefault";
 import SearchFilter from "../../components/SearchFilter/SearchFilter";
 import InspirationCard from "../../components/InspirationCard/InspirationCard";
+import ExperiencesCard from "../../components/ExperiencesCard/ExperiencesCard";
 
 const Home = () => {
   return (
@@ -15,6 +16,8 @@ const Home = () => {
           <SearchFilter />
         </div>
       </header>
+
+      {/* hero section */}
       <div className={styles.hero}>
         <div className={styles.imageContainer}>
           <img
@@ -41,7 +44,20 @@ const Home = () => {
           </div>
         </div>
 
-        <div className={styles.experiences}></div>
+        <div className={styles.experiences}>
+          <h2>Discover Airbnb Experiences</h2>
+          {/* experience cards that use props to display info */}
+          <div className={styles.experiencesCards}>
+            <ExperiencesCard
+              title="Things to do on your trip"
+              type="Experiences"
+            />
+            <ExperiencesCard
+              title="Things to do from home"
+              type="Online Experiences"
+            />
+          </div>
+        </div>
       </main>
       <footer></footer>
     </>
