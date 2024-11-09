@@ -4,6 +4,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./pages/NotFound/NotFound";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
 const App = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
 

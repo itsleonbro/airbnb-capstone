@@ -1,0 +1,4 @@
+.loginPageContainer {
+  padding: var(--section-padding);
+  height: 100vh;
+}
