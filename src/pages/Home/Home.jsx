@@ -25,7 +25,7 @@ const Home = () => {
             alt="Image"
             className={styles.heroImg}
           />
-          <div className={styles.overlay}>
+          <div className={styles.heroOverlay}>
             <h2>Not sure where to go? Perfect.</h2>
             <button>I’m flexible</button>
           </div>
