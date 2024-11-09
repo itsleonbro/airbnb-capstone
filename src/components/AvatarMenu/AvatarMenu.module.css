@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  gap: 8px;
+  padding: 4px 4px 4px 15px;
+  border: 1px solid var(--grey-border);
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.burgerIcon,
+.profile {
+  display: flex;
+  align-items: center;
+}
