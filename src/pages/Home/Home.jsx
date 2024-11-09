@@ -58,6 +58,22 @@ const Home = () => {
             />
           </div>
         </div>
+
+        {/* gift cards sections */}
+        <div>
+          <div className={styles.giftCardsContainer}>
+            <div className={styles.giftCardText}>
+              <h2>
+                Shop Airbnb <br />
+                gift cards
+              </h2>
+              <button>Learn more</button>
+            </div>
+            <div className={styles.giftCards}>
+              <img src="./src/assets/giftcards.webp" alt="" />
+            </div>
+          </div>
+        </div>
       </main>
       <footer></footer>
     </>
