@@ -1,0 +1,16 @@
+.nav {
+  padding: var(--section-padding);
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rightMenu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #000;
+}
