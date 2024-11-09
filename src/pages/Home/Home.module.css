@@ -47,7 +47,7 @@
   object-fit: cover;
 }
 
-.overlay {
+.heroOverlay {
   position: absolute;
   top: 70%;
   left: 50%;
@@ -56,12 +56,12 @@
   text-align: center;
 }
 
-.overlay h2 {
+.heroOverlay h2 {
   font-size: 48px;
   margin: 20px 0;
 }
 
-.overlay button {
+.heroOverlay button {
   border: none;
   border-radius: 100px;
   color: #671296;
