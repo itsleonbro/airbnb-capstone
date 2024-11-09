@@ -24,6 +24,6 @@
 }
 
 .dropdown {
-  color: #1d1d1d;
+  color: var(--grey-text);
   font-weight: 200;
 }

@@ -1,10 +1,6 @@
-:root {
-  --dark-background: #0a0a0a;
-}
-
 /* header */
 .navbar {
-  padding: 20px 80px;
+  padding: var(--section-padding);
 }
 
 .navbar,
@@ -73,7 +69,7 @@
 /* main */
 .tripInspirations,
 .experiences {
-  padding: 20px 80px;
+  padding: var(--section-padding);
 }
 
 .inspirationHotelCards {
