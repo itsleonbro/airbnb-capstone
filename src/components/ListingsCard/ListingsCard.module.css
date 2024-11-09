@@ -1,0 +1,41 @@
+.cardContainer {
+  display: flex;
+  gap: 40px;
+}
+
+.cardContainer h2 {
+  font-weight: 400;
+  padding-bottom: 30px;
+}
+
+.cardContainer p {
+  padding-bottom: 8px;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.leftSide button{
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.updateBtn {
+  background-color: var(--blue);
+}
+
+.deleteBtn {
+  background-color: var(--pink);
+}
+
+.leftSide img {
+  height: 200px;
+  border-radius: 10px;
+}
