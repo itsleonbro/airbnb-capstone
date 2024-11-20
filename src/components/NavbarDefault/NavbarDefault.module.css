@@ -19,6 +19,11 @@
   align-items: center;
 }
 
+.centerMenu ul li,
+.rightMenu ul li {
+  cursor: pointer;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -26,6 +31,6 @@ a {
 
 .popup {
   position: absolute;
-  right: 3%;
-  top: 80%;
+  right: 0%;
+  top: 100%;
 }

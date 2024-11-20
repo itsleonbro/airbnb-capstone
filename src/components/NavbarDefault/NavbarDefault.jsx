@@ -3,6 +3,7 @@ import styles from "./NavbarDefault.module.css"; // Import styles as a module
 import ProfilePopUp from "../ProfilePopUp/ProfilePopUp";
 import { Link } from "react-router-dom";
 import AvatarMenu from "../AvatarMenu/AvatarMenu";
+import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 
 const NavbarDefault = () => {
   const [profilePopUp, isProfilePopUp] = useState(false);
@@ -37,6 +38,10 @@ const NavbarDefault = () => {
               <Link to="/login">
                 <li>Become a Host</li>
               </Link>
+
+              <li>
+                <LanguageRoundedIcon sx={{ color: "#fff" }} />
+              </li>
 
               <li className={styles.profile} onClick={handleProfileClick}>
                 <AvatarMenu />
