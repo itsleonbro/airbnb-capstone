@@ -17,6 +17,8 @@
 .guests {
   display: flex;
   flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
 }
 
 .title {
@@ -44,4 +46,28 @@
 
 .search {
   cursor: pointer;
+}
+
+/* datepicker */
+.datePicker {
+  color: var(--grey-text);
+  font-weight: 200;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.datePicker:focus {
+  outline: none;
+}
+
+.guests {
+  position: relative;
+}
+
+.guestPopup {
+  position: absolute;
+  right: -90px;
+  top: 100%;
+  z-index: 100;
 }
