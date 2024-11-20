@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/HomePage/HomePage.jsx";
 import Footer from "./components/Footer/Footer";
-import NotFound from "./pages/NotFound/NotFound";
+import NotFound from "./pages/NotFoundPage/NotFoundPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import ListingsPage from "./pages/ListingsPage/ListingsPage.jsx";
 
