@@ -27,3 +27,21 @@
   color: var(--grey-text);
   font-weight: 200;
 }
+
+.searchbarContainer select {
+  color: var(--grey-text);
+  font-weight: 200;
+  font-size: 16px;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.searchbarContainer select:focus {
+  outline: none;
+}
+
+.search {
+  cursor: pointer;
+}
