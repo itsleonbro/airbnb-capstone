@@ -21,7 +21,7 @@ const Home = () => {
       <div className={styles.hero}>
         <div className={styles.imageContainer}>
           <img
-            src="../../src/assets/Airbnb-Homes-Cottage.webp"
+            src="/assets/Airbnb-Homes-Cottage.webp"
             alt="Image"
             className={styles.heroImg}
           />
