@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./NavbarDefault.module.css"; // Import styles as a module
+import styles from "./NavbarDefault.module.css";
 import ProfilePopUp from "../ProfilePopUp/ProfilePopUp";
 import { Link } from "react-router-dom";
 import AvatarMenu from "../AvatarMenu/AvatarMenu";
@@ -19,7 +19,7 @@ const NavbarDefault = () => {
           <div className={styles.logo}>
             <Link to="/home">
               <img
-                src="./src/assets/airbnb-white.svg"
+                src="/assets/airbnb-white.svg"
                 alt="airbnb logo"
                 height={32}
               />

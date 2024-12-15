@@ -70,7 +70,7 @@ const Home = () => {
               <button>Learn more</button>
             </div>
             <div className={styles.giftCards}>
-              <img src="./src/assets/giftcards.webp" alt="" />
+              <img src="/assets/giftcards.webp" alt="" />
             </div>
           </div>
         </div>
