@@ -146,3 +146,25 @@ exports.deleteAccommodation = async (req, res) => {
   }
 };
 
+// search accommodations
+exports.searchAccommodations = async (req, res) => {
+  try {
+    const { query } = req.query;
+
+    const accommodations = await Accommodation.find({
+      $or: [
+        { title: new RegExp(query, "i") },
+        { location: new RegExp(query, "i") },
+        { type: new RegExp(query, "i") },
+        { description: new RegExp(query, "i") },
+      ],
+    });
+
+    res.status(200).json(accommodations);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error searching accommodations",
+      error: error.message,
+    });
+  }
+};
