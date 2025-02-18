@@ -79,3 +79,70 @@ exports.getHostAccommodations = async (req, res) => {
   }
 };
 
+// update accommodation
+exports.updateAccommodation = async (req, res) => {
+  try {
+    const accommodation = await Accommodation.findById(req.params.id);
+
+    if (!accommodation) {
+      return res.status(404).json({ message: "Accommodation not found" });
+    }
+
+    // check if user is the host
+    if (accommodation.host_id.toString() !== req.userId) {
+      return res
+        .status(403)
+        .json({ message: "Not authorized to update this accommodation" });
+    }
+
+    // handle image updates if files are included
+    const updateData = { ...req.body };
+    if (req.files && req.files.length > 0) {
+      updateData.images = req.files.map(file => ({
+        filename: file.filename,
+        path: file.path,
+        originalname: file.originalname,
+      }));
+    }
+
+    const updatedAccommodation = await Accommodation.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json(updatedAccommodation);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error updating accommodation",
+      error: error.message,
+    });
+  }
+};
+
+// delete accommodation
+exports.deleteAccommodation = async (req, res) => {
+  try {
+    const accommodation = await Accommodation.findById(req.params.id);
+
+    if (!accommodation) {
+      return res.status(404).json({ message: "Accommodation not found" });
+    }
+
+    // check if user is the host
+    if (accommodation.host_id.toString() !== req.userId) {
+      return res
+        .status(403)
+        .json({ message: "Not authorized to delete this accommodation" });
+    }
+
+    await Accommodation.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Accommodation deleted successfully" });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error deleting accommodation",
+      error: error.message,
+    });
+  }
+};
+
