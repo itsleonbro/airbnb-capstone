@@ -37,4 +37,6 @@ router.delete(
   accommodationController.deleteAccommodation
 );
 
+router.get("/search", accommodationController.searchAccommodations);
+
 module.exports = router;
