@@ -9,6 +9,10 @@ const {
   validateReservation,
 } = require("./middleware/validate.middleware");
 
+const userRoutes = require("./routes/user.routes");
+const accommodationRoutes = require("./routes/accommodation.routes");
+const reservationRoutes = require("./routes/reservation.routes");
+
 require("dotenv").config();
 
 const app = express();
@@ -24,6 +28,11 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected successfully"))
   .catch(err => console.log("MongoDB connection error:", err));
+
+//routes
+app.use("/api/users", userRoutes);
+app.use("/api/accommodations", accommodationRoutes);
+app.use("/api/reservations", reservationRoutes);
 
 // errror middleware
 app.use(errorMiddleware);
