@@ -49,3 +49,7 @@ cypress/screenshots
 .cache
 .temp
 .eslintcache
+
+# Uploads directory
+uploads/*
+!uploads/.gitkeep
