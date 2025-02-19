@@ -12,9 +12,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   // get auth state from redux
-  const { loading, error, isAuthenticated, role } = useSelector(
-    state => state.auth
-  );
+  const loading = useSelector(state => state.auth.loading);
+  const error = useSelector(state => state.auth.error);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const role = useSelector(state => state.auth.role);
 
   // check if user is already logged in
   useEffect(() => {
