@@ -9,7 +9,7 @@ const NavbarUser = () => {
       <div className={styles.nav}>
         <div className={styles.navContainer}>
           <Link to="/home">
-            <img src="../src/assets/airbnb.svg" alt="logo" height={32} />
+            <img src="/assets/airbnb.svg" alt="logo" height={32} />
           </Link>
 
           <div className={styles.rightMenu}>

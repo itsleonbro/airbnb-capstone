@@ -6,7 +6,7 @@ const ListingsCard = () => {
     <div>
       <div className={styles.cardContainer}>
         <div className={styles.leftSide}>
-          <img src="../../src/assets/listingimg.png" alt="" />
+          <img src="/assets/listingimg.png" alt="" />
           <button className={styles.updateBtn}>Update</button>
           <button className={styles.deleteBtn}>Delete</button>
         </div>
