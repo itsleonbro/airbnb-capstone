@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./ProfilePopUp.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/reducers/authReducer";
+import { logoutUser } from "../../store/actions/authActions";
 const ProfilePopUp = () => {
   // get auth state from redux
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
@@ -10,7 +10,7 @@ const ProfilePopUp = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logoutUser());
   };
 
   return (
