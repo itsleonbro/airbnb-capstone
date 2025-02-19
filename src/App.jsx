@@ -1,4 +1,5 @@
 import React from "react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import "./App.css";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/HomePage/HomePage.jsx";
@@ -27,6 +28,7 @@ const App = () => {
 
       {/* conditionally rendered footer*/}
       {!noFooterPaths.includes(location.pathname) && <Footer />}
+      <SpeedInsights />
     </div>
   );
 };
