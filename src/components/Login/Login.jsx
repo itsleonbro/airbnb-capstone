@@ -1,48 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, clearAuthError } from "../../store/actions/authActions";
 import styles from "./Login.module.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const API_BASE_URL = "http://localhost:5001";
+  // get auth state from redux
+  const { loading, error, isAuthenticated, role } = useSelector(
+    state => state.auth
+  );
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-
-    try {
-      const response = await axios.post(`${API_BASE_URL}/api/users/login`, {
-        username,
-        password,
-      });
-
-      // store token and user data in localstorage
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("userId", response.data.userId);
-      localStorage.setItem("username", response.data.username);
-      localStorage.setItem("role", response.data.role);
-
-      if (response.data.role === "host") {
+  // check if user is already logged in
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (role === "host") {
         navigate("/admin/view-listings");
       } else {
         navigate("/");
       }
-    } catch (err) {
-      setError(
-        err.response?.data?.message ||
-          "Login failed. please check your credentials."
-      );
-      console.error("login error:", err);
-    } finally {
-      setLoading(false);
     }
+  }, [isAuthenticated, role, navigate]);
+
+  // clear any auth errors when component unmounts
+  useEffect(() => {
+    return () => {
+      if (error) {
+        dispatch(clearAuthError());
+      }
+    };
+  }, [dispatch, error]);
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    dispatch(login(username, password));
   };
 
   return (
@@ -74,20 +71,20 @@ const LoginForm = () => {
         </div>
 
         <a href="#" className={styles.forgotPassword}>
-          Forgot Password ?
+          Forgot password?
         </a>
         <div className={styles.loginBtn}>
           <button type="submit" className={styles.button} disabled={loading}>
-            {loading ? "Logging in..." : "login"}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </div>
       </form>
 
       <p>
-        don't have an account? <Link to="/signup">Sign up</Link>
+        Don't have an account? <Link to="/signup">Sign up</Link>
       </p>
     </div>
   );
 };
 
-export default LoginForm;
+export default Login;
