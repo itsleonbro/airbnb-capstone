@@ -7,12 +7,42 @@ exports.signup = async (req, res) => {
   try {
     const { username, password, role } = req.body;
 
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: "username already exists" });
+    // validate input
+    if (!username || !password) {
+      return res
+        .status(400)
+        .json({ message: "Username and password are required" });
     }
 
-    // hash password
+    if (typeof username !== "string" || typeof password !== "string") {
+      return res
+        .status(400)
+        .json({ message: "Username and password must be strings" });
+    }
+
+    if (username.length < 3 || username.length > 30) {
+      return res
+        .status(400)
+        .json({ message: "Username must be between 3 and 30 characters" });
+    }
+
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters long" });
+    }
+
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(409).json({ message: "Username already exists" });
+    }
+
+    // validate role
+    const validRoles = ["user", "host"];
+    if (role && !validRoles.includes(role)) {
+      return res.status(400).json({ message: "Invalid role specified" });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
@@ -23,9 +53,17 @@ exports.signup = async (req, res) => {
 
     await user.save();
 
-    res.status(201).json({ message: "user created successfully" });
+    res.status(201).json({ message: "User created successfully" });
   } catch (error) {
-    res.status(500).json({ message: "error creating user" });
+    console.error("Signup error:", error);
+    if (error.name === "ValidationError") {
+      return res
+        .status(400)
+        .json({ message: "Invalid input data", errors: error.errors });
+    }
+    res
+      .status(500)
+      .json({ message: "Internal server error while creating user" });
   }
 };
 
