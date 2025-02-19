@@ -44,7 +44,7 @@ const NavbarDefault = () => {
               {isAuthenticated ? (
                 `Welcome, ${username}`
               ) : (
-                <Link to="/login">
+                <Link to="/signup">
                   <li>Become a Host</li>
                 </Link>
               )}
