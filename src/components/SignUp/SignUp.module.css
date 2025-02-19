@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 60px;
+  color: #000;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.input {
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid var(--dark-background);
+  border-radius: 8px;
+  outline: none;
+}
+
+.forgotPassword {
+  display: flex;
+  justify-content: center;
+  color: var(--blue);
+  text-decoration: none;
+  margin-top: -20px;
+}
+
+.signUpBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: var(--blue);
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 230px;
+}
+
+.container p {
+  margin-top: 20px;
+}
