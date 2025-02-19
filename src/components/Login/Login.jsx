@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -42,6 +44,10 @@ const LoginForm = () => {
           </button>
         </div>
       </form>
+
+      <p>
+        Don't have an account? <Link to={"/signup"}>Sign Up</Link>
+      </p>
     </div>
   );
 };
