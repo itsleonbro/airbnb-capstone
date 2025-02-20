@@ -5,12 +5,18 @@ import { Link } from "react-router-dom";
 import AvatarMenu from "../AvatarMenu/AvatarMenu";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 
+import { useSelector } from "react-redux";
+
 const NavbarDefault = () => {
   const [profilePopUp, isProfilePopUp] = useState(false);
 
   const handleProfileClick = () => {
     isProfilePopUp(!profilePopUp);
   };
+
+  // get auth state from redux
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const username = useSelector(state => state.auth.username);
 
   return (
     <>
@@ -35,9 +41,13 @@ const NavbarDefault = () => {
 
           <div className={styles.rightMenu}>
             <ul>
-              <Link to="/login">
-                <li>Become a Host</li>
-              </Link>
+              {isAuthenticated ? (
+                `Welcome, ${username}`
+              ) : (
+                <Link to="/signup">
+                  <li>Become a Host</li>
+                </Link>
+              )}
 
               <li>
                 <LanguageRoundedIcon sx={{ color: "#fff" }} />
