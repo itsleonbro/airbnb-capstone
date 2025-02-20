@@ -20,10 +20,10 @@ exports.signup = async (req, res) => {
         .json({ message: "Username and password must be strings" });
     }
 
-    if (username.length < 3 || username.length > 30) {
+    if (username.length < 3 || username.length > 25) {
       return res
         .status(400)
-        .json({ message: "Username must be between 3 and 30 characters" });
+        .json({ message: "Username must be between 3 and 25 characters" });
     }
 
     if (password.length < 6) {
@@ -74,12 +74,12 @@ exports.login = async (req, res) => {
 
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(401).json({ message: "invalid credentials" });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "invalid credentials" });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     // jwt token
@@ -101,6 +101,6 @@ exports.login = async (req, res) => {
       role: user.role,
     });
   } catch (error) {
-    res.status(500).json({ message: "error logging in" });
+    res.status(500).json({ message: "Error logging in" });
   }
 };
