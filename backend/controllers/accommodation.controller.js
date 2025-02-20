@@ -26,7 +26,7 @@ exports.createAccommodation = async (req, res) => {
     const accommodation = new Accommodation({
       ...req.body,
       host_id: req.userId, // from auth middleware
-      images,
+      ...(req.body.images && { images: req.body.images }),
       createdAt: new Date(),
     });
 
