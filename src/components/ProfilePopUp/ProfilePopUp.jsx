@@ -19,6 +19,13 @@ const ProfilePopUp = () => {
         <div className={styles.popUpContainer}>
           <div className={styles.popUpContent}>
             {isAuthenticated ? (
+              <Link to={"/admin/view-listings"}>
+                <p>Dashboard</p>{" "}
+              </Link>
+            ) : (
+              ""
+            )}
+            {isAuthenticated ? (
               <p onClick={handleLogout}>Logout</p>
             ) : (
               <Link to="/login">Login</Link>
