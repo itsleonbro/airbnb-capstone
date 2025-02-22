@@ -3,24 +3,46 @@ const Accommodation = require("../models/accommodation.model");
 // create new accommodation
 exports.createAccommodation = async (req, res) => {
   try {
+    // validate required fields
+    const requiredFields = ["title", "type", "location", "price", "guests"];
+
+    for (const field of requiredFields) {
+      if (!req.body[field]) {
+        return res.status(400).json({
+          message: `Missing required field: ${field}`,
+          success: false,
+        });
+      }
+    }
+
+    // Validate price and guests are numbers
+    if (isNaN(req.body.price) || isNaN(req.body.guests)) {
+      return res.status(400).json({
+        message: "Price and guests must be valid numbers",
+        success: false,
+      });
+    }
+
     const accommodation = new Accommodation({
       ...req.body,
       host_id: req.userId, // from auth middleware
-      images: req.files
-        ? req.files.map(file => ({
-            filename: file.filename,
-            path: file.path,
-            originalname: file.originalname,
-          }))
-        : [],
+      ...(req.body.images && { images: req.body.images }),
+      createdAt: new Date(),
     });
 
     const savedAccommodation = await accommodation.save();
-    res.status(201).json(savedAccommodation);
+
+    return res.status(201).json({
+      message: "Accommodation created successfully",
+      data: savedAccommodation,
+      success: true,
+    });
   } catch (error) {
-    res.status(500).json({
+    console.error("Error creating accommodation:", error);
+    return res.status(500).json({
       message: "Error creating accommodation",
       error: error.message,
+      success: false,
     });
   }
 };

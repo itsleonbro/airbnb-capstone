@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./NavbarUser.module.css";
 import AvatarMenu from "../AvatarMenu/AvatarMenu";
 import { useSelector } from "react-redux";
+import ProfilePopUp from "../ProfilePopUp/ProfilePopUp";
 
 const NavbarUser = () => {
+  const [profilePopUp, isProfilePopUp] = useState(false);
+
+  const handleProfileClick = () => {
+    console.log("clicked");
+    isProfilePopUp(!profilePopUp);
+  };
+
   // get auth state from redux
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const username = useSelector(state => state.auth.username);
@@ -27,7 +35,15 @@ const NavbarUser = () => {
                 </Link>
               )}
             </p>
-            <AvatarMenu />
+            <ul>
+              <li className={styles.profile} onClick={handleProfileClick}>
+                <AvatarMenu />
+              </li>
+            </ul>
+
+            <div className={styles.popup}>
+              {profilePopUp && <ProfilePopUp />}
+            </div>
           </div>
         </div>
       </div>

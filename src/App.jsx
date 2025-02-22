@@ -1,6 +1,5 @@
 import React from "react";
-import { SpeedInsights } from '@vercel/speed-insights/react';
-import "./App.css";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/HomePage/HomePage.jsx";
 import Footer from "./components/Footer/Footer";
@@ -8,6 +7,11 @@ import NotFound from "./pages/NotFoundPage/NotFoundPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage/SignupPage.jsx";
 import ListingsPage from "./pages/ListingsPage/ListingsPage.jsx";
+import CreateListingPage from "./pages/CreateListingPage/CreateListingPage.jsx";
+import EditListingPage from "./pages/EditListingPage/EditListingPage.jsx";
+import ListingDetailsPage from "./pages/ListingDetailsPage/ListingDetailsPage.jsx";
+import BrowseListingsPage from "./pages/BrowseListingsPage/BrowseListingsPage.jsx";
+import "./App.css";
 
 const App = () => {
   const location = useLocation();
@@ -21,6 +25,10 @@ const App = () => {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/admin/view-listings" element={<ListingsPage />} />
+        <Route path="/admin/create-listing" element={<CreateListingPage />} />
+        <Route path="/admin/edit-listing/:id" element={<EditListingPage />} />
+        <Route path="/listing/:id" element={<ListingDetailsPage />} />
+        <Route path="/browse-listings" element={<BrowseListingsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/*" element={<NotFound />} />
