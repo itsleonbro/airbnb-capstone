@@ -1,0 +1,305 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.loadingContainer,
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #ff5a5f;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.errorContainer h2 {
+  color: #ff5a5f;
+  margin-bottom: 10px;
+}
+
+.errorContainer button,
+.backLink button {
+  background: none;
+  border: none;
+  color: #008489;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 0;
+  text-decoration: underline;
+}
+
+.backLink {
+  margin-bottom: 20px;
+}
+
+.listingHeader {
+  margin-bottom: 24px;
+}
+
+.listingHeader h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.stars {
+  color: #ff5a5f;
+  margin-right: 5px;
+}
+
+.reviews {
+  color: #484848;
+}
+
+.location {
+  color: #484848;
+}
+
+.imageGallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.mainImage {
+  grid-row: span 2;
+  height: 100%;
+}
+
+.mainImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contentContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 80px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #ebebeb;
+  margin: 32px 0;
+}
+
+.hostSection h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.featuresSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.feature {
+  display: flex;
+  gap: 16px;
+}
+
+.featureIcon {
+  font-size: 24px;
+  color: #484848;
+}
+
+.feature h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.descriptionSection h2,
+.amenitiesSection h2,
+.specificRatingsSection h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.amenitiesList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.amenity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amenityIcon {
+  color: #008489;
+}
+
+.specificRating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ratingLabel {
+  width: 120px;
+  text-transform: capitalize;
+}
+
+.ratingBar {
+  flex-grow: 1;
+  height: 4px;
+  background-color: #ebebeb;
+  position: relative;
+  margin: 0 12px;
+}
+
+.ratingFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #484848;
+}
+
+.ratingValue {
+  width: 30px;
+  text-align: right;
+}
+
+.pricingCard {
+  position: sticky;
+  top: 80px;
+  border: 1px solid #ebebeb;
+  border-radius: 12px;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
+  padding: 24px;
+}
+
+.priceHeader {
+  margin-bottom: 24px;
+}
+
+.priceHeader h3 {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.miniRating {
+  font-size: 14px;
+  color: #484848;
+}
+
+.pricingDetails {
+  margin-top: 24px;
+}
+
+.pricingRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.adminActions {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.editButton {
+  width: 100%;
+  padding: 14px;
+  background-color: #008489;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.editButton:hover {
+  background-color: #006c70;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .imageGallery {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbnails {
+    display: none;
+  }
+
+  .contentContainer {
+    grid-template-columns: 1fr;
+    grid-gap: 40px;
+  }
+
+  .amenitiesList {
+    grid-template-columns: 1fr;
+  }
+}
