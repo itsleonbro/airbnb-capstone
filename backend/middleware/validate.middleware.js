@@ -21,10 +21,6 @@ const validateAccommodation = (req, res, next) => {
       .json({ message: "Location must be at least 3 characters long" });
   }
 
-  if (typeof price !== "number" || price <= 0) {
-    return res.status(400).json({ message: "Price must be a positive number" });
-  }
-
   if (typeof description !== "string" || description.trim().length < 10) {
     return res
       .status(400)
