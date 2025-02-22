@@ -1,6 +1,10 @@
 .cardContainer {
   display: flex;
   gap: 40px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .cardContainer h2 {
@@ -18,7 +22,7 @@
   gap: 25px;
 }
 
-.leftSide button{
+.leftSide button {
   color: #fff;
   font-weight: 500;
   border: none;
@@ -38,4 +42,8 @@
 .leftSide img {
   height: 200px;
   border-radius: 10px;
+}
+
+.viewDetailsLink {
+  cursor: pointer;
 }
