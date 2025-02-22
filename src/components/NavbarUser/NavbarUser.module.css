@@ -14,3 +14,17 @@
   gap: 20px;
   color: #000;
 }
+
+.rightMenu ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup {
+  position: absolute;
+  right: 0%;
+  top: 8%;
+}
