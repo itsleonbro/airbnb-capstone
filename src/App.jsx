@@ -10,6 +10,7 @@ import ListingsPage from "./pages/ListingsPage/ListingsPage.jsx";
 import CreateListingPage from "./pages/CreateListingPage/CreateListingPage.jsx";
 import EditListingPage from "./pages/EditListingPage/EditListingPage.jsx";
 import ListingDetailsPage from "./pages/ListingDetailsPage/ListingDetailsPage.jsx";
+import BrowseListingsPage from "./pages/BrowseListingsPage/BrowseListingsPage.jsx";
 import "./App.css";
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/admin/create-listing" element={<CreateListingPage />} />
         <Route path="/admin/edit-listing/:id" element={<EditListingPage />} />
         <Route path="/listing/:id" element={<ListingDetailsPage />} />
+        <Route path="/browse-listings" element={<BrowseListingsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/*" element={<NotFound />} />
