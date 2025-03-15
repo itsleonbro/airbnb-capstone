@@ -5,10 +5,12 @@ import styles from "./ListingsCard.module.css";
 const ListingsCard = ({ listing, onDelete, onEdit }) => {
   const navigate = useNavigate();
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   // use the first image from the listing or a placeholder IF no imgs
   const mainImage =
     listing?.images?.length > 0
-      ? `http://localhost:5001/${listing.images[0].path}`
+      ? `${API_BASE_URL}/${listing.images[0].path}`
       : "/assets/listingimg.png";
 
   const handleCardClick = e => {
