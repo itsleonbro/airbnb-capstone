@@ -53,7 +53,9 @@ const NavbarDefault = () => {
             }`}
           >
             <ul>
-              <li>Places to Stay</li>
+              <li>
+                <Link to="/browse-listings">Places to Stay</Link>
+              </li>
               <li>Experiences</li>
               <li>Online Experiences</li>
             </ul>

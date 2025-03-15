@@ -5,7 +5,7 @@ import NavbarUser from "../../components/NavbarUser/NavbarUser";
 import axios from "axios";
 import styles from "./ListingDetailsPage.module.css";
 
-const API_BASE_URL = "http://localhost:5001";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ListingDetailsPage = () => {
   const [listing, setListing] = useState(null);

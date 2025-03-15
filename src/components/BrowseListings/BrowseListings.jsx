@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./BrowseListings.module.css";
 
-const API_BASE_URL = "http://localhost:5001";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BrowseListings = () => {
   const [listings, setListings] = useState([]);
@@ -15,13 +15,34 @@ const BrowseListings = () => {
     minPrice: "",
     maxPrice: "",
     guests: "",
+    checkIn: "",
+    checkOut: "",
   });
 
   const navigate = useNavigate();
+  const location = useLocation();
 
+  // extract search params from url when component mounts
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+
+    const updatedFilters = {
+      location: queryParams.get("location") || "",
+      type: queryParams.get("type") || "",
+      minPrice: queryParams.get("minPrice") || "",
+      maxPrice: queryParams.get("maxPrice") || "",
+      guests: queryParams.get("guests") || "",
+      checkIn: queryParams.get("checkIn") || "",
+      checkOut: queryParams.get("checkOut") || "",
+    };
+
+    setFilters(updatedFilters);
+  }, [location.search]);
+
+  //  fetch listings based on current filters
   useEffect(() => {
     fetchListings();
-  }, []);
+  }, [filters]);
 
   const fetchListings = async () => {
     try {
@@ -55,6 +76,14 @@ const BrowseListings = () => {
 
   const handleSubmitFilters = e => {
     e.preventDefault();
+
+    // update url with current filters
+    const queryParams = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) queryParams.append(key, value);
+    });
+
+    navigate(`/browse-listings?${queryParams.toString()}`, { replace: true });
     fetchListings();
   };
 
@@ -66,6 +95,23 @@ const BrowseListings = () => {
     return `R${price.toLocaleString()}`;
   };
 
+  const formatDateRange = () => {
+    if (!filters.checkIn || !filters.checkOut) return null;
+
+    try {
+      const checkIn = new Date(filters.checkIn);
+      const checkOut = new Date(filters.checkOut);
+
+      const options = { day: "numeric", month: "short" };
+      return `${checkIn.toLocaleDateString(
+        "en-ZA",
+        options
+      )} - ${checkOut.toLocaleDateString("en-ZA", options)}`;
+    } catch (error) {
+      return null;
+    }
+  };
+
   if (loading) {
     return <div className={styles.container}>Loading Listings...</div>;
   }
@@ -73,6 +119,18 @@ const BrowseListings = () => {
   return (
     <div className={styles.container}>
       <h1>{listings.length}+ stays in South Africa</h1>
+
+      {formatDateRange() && (
+        <div className={styles.dateRange}>
+          <span>{formatDateRange()}</span>
+          {filters.guests && (
+            <span>
+              {" "}
+              · {filters.guests} guest{filters.guests > 1 ? "s" : ""}
+            </span>
+          )}
+        </div>
+      )}
 
       {error && <p className={styles.error}>{error}</p>}
 
