@@ -4,14 +4,21 @@ import ProfilePopUp from "../ProfilePopUp/ProfilePopUp";
 import { Link } from "react-router-dom";
 import AvatarMenu from "../AvatarMenu/AvatarMenu";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 import { useSelector } from "react-redux";
 
 const NavbarDefault = () => {
-  const [profilePopUp, isProfilePopUp] = useState(false);
+  const [profilePopUp, setProfilePopUp] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleProfileClick = () => {
-    isProfilePopUp(!profilePopUp);
+    setProfilePopUp(!profilePopUp);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   // get auth state from redux
@@ -26,14 +33,27 @@ const NavbarDefault = () => {
             <Link to="/home">
               <img
                 src="/assets/airbnb-white.svg"
-                alt="airbnb logo"
+                alt="Airbnb logo"
                 height={32}
               />
             </Link>
           </div>
-          <div className={styles.centerMenu}>
+
+          <button
+            className={styles.mobileMenuToggle}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
+
+          <div
+            className={`${styles.centerMenu} ${
+              mobileMenuOpen ? styles.active : ""
+            }`}
+          >
             <ul>
-              <li>Places to stay</li>
+              <li>Places to Stay</li>
               <li>Experiences</li>
               <li>Online Experiences</li>
             </ul>
@@ -42,7 +62,7 @@ const NavbarDefault = () => {
           <div className={styles.rightMenu}>
             <ul>
               {isAuthenticated ? (
-                `Welcome, ${username}`
+                <span>Welcome, {username}</span>
               ) : (
                 <Link to="/signup">
                   <li>Become a Host</li>
