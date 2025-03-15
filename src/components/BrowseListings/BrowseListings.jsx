@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import styles from "./BrowseListings.module.css";
 
 const API_BASE_URL = "http://localhost:5001";
@@ -15,6 +16,8 @@ const BrowseListings = () => {
     maxPrice: "",
     guests: "",
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchListings();
@@ -53,6 +56,10 @@ const BrowseListings = () => {
   const handleSubmitFilters = e => {
     e.preventDefault();
     fetchListings();
+  };
+
+  const handleListingClick = listingId => {
+    navigate(`/listing/${listingId}`);
   };
 
   const formatPrice = price => {
@@ -132,7 +139,11 @@ const BrowseListings = () => {
           <p>No listings found.</p>
         ) : (
           listings.map(listing => (
-            <div key={listing._id} className={styles.listingCard}>
+            <div
+              key={listing._id}
+              className={styles.listingCard}
+              onClick={() => handleListingClick(listing._id)}
+            >
               <div className={styles.imageContainer}>
                 {listing.images && listing.images.length > 0 ? (
                   <img

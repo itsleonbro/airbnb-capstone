@@ -210,13 +210,22 @@ const ListingDetailsPage = () => {
               </div>
             </div>
 
-            {isAuthenticated && role === "host" && (
+            {isAuthenticated && role === "host" ? (
               <div className={styles.adminActions}>
                 <button onClick={handleEdit} className={styles.editButton}>
                   Edit Listing
                 </button>
               </div>
-            )}
+            ) : isAuthenticated && role === "user" ? (
+              <div className={styles.userActions}>
+                <button
+                  onClick={() => navigate(`/reserve/${id}`)}
+                  className={styles.bookButton}
+                >
+                  Book Now
+                </button>
+              </div>
+            ) : null}
 
             <div className={styles.pricingDetails}>
               <div className={styles.pricingRow}>

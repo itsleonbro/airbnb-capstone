@@ -1,0 +1,14 @@
+.container {
+  min-height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.content {
+  padding: 2rem var(--section-padding);
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+}

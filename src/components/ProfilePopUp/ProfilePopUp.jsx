@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./ProfilePopUp.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/actions/authActions";
+
 const ProfilePopUp = () => {
   // get auth state from redux
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
@@ -25,11 +26,20 @@ const ProfilePopUp = () => {
                   role === "host" ? "/admin/view-listings" : "/browse-listings"
                 }
               >
-                <p>Dashboard</p>{" "}
+                <p>Dashboard</p>
               </Link>
             ) : (
               ""
             )}
+
+            {isAuthenticated && role === "user" ? (
+              <Link to="/my-bookings">
+                <p>My Bookings</p>
+              </Link>
+            ) : (
+              ""
+            )}
+
             {isAuthenticated ? (
               <p onClick={handleLogout}>Logout</p>
             ) : (

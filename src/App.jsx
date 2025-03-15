@@ -11,6 +11,8 @@ import CreateListingPage from "./pages/CreateListingPage/CreateListingPage.jsx";
 import EditListingPage from "./pages/EditListingPage/EditListingPage.jsx";
 import ListingDetailsPage from "./pages/ListingDetailsPage/ListingDetailsPage.jsx";
 import BrowseListingsPage from "./pages/BrowseListingsPage/BrowseListingsPage.jsx";
+import ReservationPage from "./pages/ReservationPage/ReservationPage.jsx";
+import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage.jsx";
 import "./App.css";
 
 const App = () => {
@@ -29,6 +31,8 @@ const App = () => {
         <Route path="/admin/edit-listing/:id" element={<EditListingPage />} />
         <Route path="/listing/:id" element={<ListingDetailsPage />} />
         <Route path="/browse-listings" element={<BrowseListingsPage />} />
+        <Route path="/reserve/:id" element={<ReservationPage />} />
+        <Route path="/my-bookings" element={<MyBookingsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/*" element={<NotFound />} />

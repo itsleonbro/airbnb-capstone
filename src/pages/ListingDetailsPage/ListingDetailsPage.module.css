@@ -283,6 +283,41 @@
   background-color: #006c70;
 }
 
+.adminActions,
+.userActions {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.editButton,
+.bookButton {
+  width: 100%;
+  padding: 14px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.editButton {
+  background-color: #008489;
+}
+
+.bookButton {
+  background-color: var(--pink);
+}
+
+.editButton:hover {
+  background-color: #006c70;
+}
+
+.bookButton:hover {
+  background-color: #d02945;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .imageGallery {

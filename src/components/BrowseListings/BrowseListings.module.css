@@ -93,6 +93,14 @@
   color: #6b7280;
 }
 
+.listingCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
 .listingDetails {
   padding: 1rem;
 }
