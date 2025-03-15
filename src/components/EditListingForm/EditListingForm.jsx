@@ -179,7 +179,7 @@ const EditListingForm = () => {
           {currentImages.map((image, index) => (
             <div key={index} className={styles.imagePreview}>
               <img
-                src={`{API_BASE_URL}/${image.path}`}
+                src={`${API_BASE_URL}/${image.path}`}
                 alt={`Listing ${index}`}
               />
             </div>
