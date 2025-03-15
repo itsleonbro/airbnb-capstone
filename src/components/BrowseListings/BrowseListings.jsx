@@ -72,7 +72,7 @@ const BrowseListings = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Browse All Listings</h1>
+      <h1>{listings.length}+ stays in South Africa</h1>
 
       {error && <p className={styles.error}>{error}</p>}
 
@@ -158,27 +158,70 @@ const BrowseListings = () => {
                 )}
               </div>
 
-              <div className={styles.listingDetails}>
-                <h2 className={styles.listingTitle}>{listing.title}</h2>
-                <p className={styles.listingType}>{listing.type}</p>
-                <p className={styles.listingLocation}>{listing.location}</p>
-                <p className={styles.listingAmenities}>
-                  {listing.guests} guests · {listing.bedrooms} bedrooms ·{" "}
-                  {listing.bathrooms} bathrooms
-                </p>
-                {listing.amenities && listing.amenities.length > 0 && (
-                  <p className={styles.amenities}>
-                    {listing.amenities.slice(0, 3).join(" · ")}
-                    {listing.amenities.length > 3 && " · ..."}
-                  </p>
-                )}
-                <p className={styles.listingPrice}>
-                  <span className={styles.price}>
-                    {formatPrice(listing.price)}
-                  </span>{" "}
-                  / night
-                </p>
+              <div className={styles.listingContent}>
+                <div className={styles.listingDetails}>
+                  <p
+                    className={styles.propertyType}
+                  >{`Entire ${listing.type} in ${listing.location}`}</p>
+                  <h2 className={styles.listingTitle}>{listing.title}</h2>
+
+                  <div className={styles.amenitiesRow}>
+                    <span>{`${listing.guests} guests`}</span>
+                    <span className={styles.bullet}>·</span>
+                    <span>{`Entire ${listing.type}`}</span>
+                    <span className={styles.bullet}>·</span>
+                    <span>{`${listing.bedrooms} beds`}</span>
+                    <span className={styles.bullet}>·</span>
+                    <span>{`${listing.bathrooms} bath`}</span>
+                  </div>
+
+                  <div className={styles.amenitiesRow}>
+                    {listing.amenities &&
+                      listing.amenities.length > 0 &&
+                      listing.amenities.slice(0, 3).map((amenity, index) => (
+                        <React.Fragment key={index}>
+                          {index > 0 && (
+                            <span className={styles.bullet}>·</span>
+                          )}
+                          <span className={styles.amenity}>{amenity}</span>
+                        </React.Fragment>
+                      ))}
+                  </div>
+                </div>
+
+                <div className={styles.listingMeta}>
+                  <div className={styles.rating}>
+                    <span className={styles.stars}>
+                      ★ {listing.rating || 5.0}
+                    </span>
+                    <span>({listing.reviews || 0} reviews)</span>
+                  </div>
+
+                  <div className={styles.listingPrice}>
+                    <span className={styles.price}>
+                      {formatPrice(listing.price)}
+                    </span>
+                    <span className={styles.perNight}>/night</span>
+                  </div>
+                </div>
               </div>
+
+              <button className={styles.favoriteButton}>
+                <svg
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="presentation"
+                  focusable="false"
+                  style={{
+                    height: "24px",
+                    width: "24px",
+                    fill: "currentcolor",
+                  }}
+                >
+                  <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path>
+                </svg>
+              </button>
             </div>
           ))
         )}
