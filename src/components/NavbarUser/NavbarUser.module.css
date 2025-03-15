@@ -5,6 +5,7 @@
 .navContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
@@ -27,4 +28,40 @@
   position: absolute;
   right: 0%;
   top: 8%;
+  z-index: 10;
+}
+
+/* responsiveness */
+@media (max-width: 768px) {
+  .nav {
+    padding: 15px 40px;
+  }
+
+  .rightMenu {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 15px 20px;
+  }
+
+  .navContainer img {
+    height: 28px;
+  }
+
+  .rightMenu p {
+    display: none;
+
+    font-size: 14px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .popup {
+    right: -25%;
+  }
 }

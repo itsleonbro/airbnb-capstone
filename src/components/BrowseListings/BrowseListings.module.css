@@ -4,6 +4,12 @@
   padding: 2rem;
 }
 
+.container h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
 .error {
   color: #dc2626;
   padding: 1rem;
@@ -47,43 +53,39 @@
 }
 
 .listingsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
 .listingCard {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.listingCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .imageContainer {
-  position: relative;
-  padding-top: 66.67%; /* 3:2 aspect ratio */
-  background-color: #f3f4f6;
+  width: 300px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .listingImage {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.listingCard:hover .listingImage {
+  transform: scale(1.05);
 }
 
 .placeholderImage {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -93,52 +95,118 @@
   color: #6b7280;
 }
 
-.listingCard {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
+.listingContent {
+  flex: 1;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .listingDetails {
-  padding: 1rem;
+  flex: 1;
 }
 
-.listingTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.listingType {
-  color: #6b7280;
-  text-transform: capitalize;
+.propertyType {
+  font-size: 14px;
+  color: #222;
   margin-bottom: 0.25rem;
 }
 
-.listingLocation {
-  color: #374151;
+.listingTitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: #222;
+}
+
+.amenitiesRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #717171;
   margin-bottom: 0.5rem;
 }
 
-.listingAmenities {
-  color: #6b7280;
-  margin-bottom: 0.5rem;
+.bullet {
+  margin: 0 0.375rem;
 }
 
-.amenities {
-  color: #6b7280;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
+.amenity {
+  text-transform: capitalize;
+}
+
+.listingMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 14px;
+  color: #222;
+}
+
+.stars {
+  color: #222;
 }
 
 .listingPrice {
-  margin-top: 1rem;
-  color: #374151;
+  text-align: right;
+  font-size: 14px;
+  color: #222;
 }
 
 .price {
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 18px;
+}
+
+.perNight {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.favoriteButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  color: #fff;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+  transition: transform 0.2s ease;
+}
+
+.favoriteButton:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .listingCard {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .imageContainer {
+    width: 100%;
+    height: 250px;
+  }
+
+  .listingContent {
+    padding: 0;
+  }
+
+  .favoriteButton {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
 }

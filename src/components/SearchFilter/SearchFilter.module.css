@@ -1,3 +1,9 @@
+.searchbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .searchbarContainer {
   display: flex;
   justify-content: space-between;
@@ -7,7 +13,8 @@
   border-radius: 100px;
   background-color: #fff;
   gap: 10px;
-  width: 850px;
+  width: 100%;
+  max-width: 850px;
   height: auto;
 }
 
@@ -46,6 +53,11 @@
 
 .search {
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 /* datepicker */
@@ -55,6 +67,7 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  width: 100%;
 }
 
 .datePicker:focus {
@@ -70,4 +83,86 @@
   right: -90px;
   top: 100%;
   z-index: 100;
+}
+
+/*responsiveness */
+@media (max-width: 1024px) {
+  .searchbarContainer {
+    padding: 8px 8px 8px 24px;
+    max-width: 700px;
+    gap: 5px;
+  }
+
+  .title,
+  .dropdown {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchbarContainer {
+    flex-wrap: wrap;
+    border-radius: 20px;
+    padding: 12px 16px;
+    gap: 12px;
+    max-width: 500px;
+  }
+
+  .hotels,
+  .guests {
+    width: calc(50% - 8px);
+  }
+
+  .checkIn,
+  .checkOut {
+    width: calc(50% - 8px);
+  }
+
+  .search {
+    margin-left: auto;
+  }
+
+  .guestPopup {
+    right: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .searchbarContainer {
+    flex-direction: column;
+    border-radius: 16px;
+    align-items: stretch;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .hotels,
+  .checkIn,
+  .checkOut,
+  .guests {
+    width: 100%;
+  }
+
+  .search {
+    margin: 8px auto 0;
+    width: 100%;
+    background-color: var(--pink);
+    border-radius: 20px;
+    height: 44px;
+  }
+
+  .search svg {
+    color: white;
+  }
+
+  .guestPopup {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.15);
+  }
 }

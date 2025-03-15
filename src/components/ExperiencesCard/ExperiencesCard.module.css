@@ -1,21 +1,41 @@
 .imageWrapper {
   position: relative;
-  width: 600px;
-  height: 100%;
+  width: 100%;
+  height: 0;
+  padding-bottom: 60%; /* 5:3 aspect ratio */
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .imageWrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imageWrapper:hover img {
+  transform: scale(1.05);
 }
 
 .overlay {
   position: absolute;
-  top: 30%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
+  text-align: center;
+  width: 90%;
+}
+
+.overlay h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .overlay button {
@@ -23,8 +43,60 @@
   border-radius: 10px;
   color: #000;
   background-color: #fff;
-  padding: 15px 20px;
+  padding: 15px 25px;
   cursor: pointer;
-  margin: 20px 0;
+  margin: 10px 0;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.2s ease;
 }
 
+.overlay button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1024px) {
+  .imageWrapper {
+    padding-bottom: 65%; /* Slightly taller on medium screens */
+  }
+
+  .overlay h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .overlay button {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .overlay button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageWrapper {
+    padding-bottom: 75%; /* Taller on mobile */
+  }
+
+  .overlay h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .overlay button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
