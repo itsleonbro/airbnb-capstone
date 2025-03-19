@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userReservations: [],
+  hostReservations: [],
   loading: false,
   error: null,
   currentReservation: null,
@@ -24,6 +25,12 @@ const reservationSlice = createSlice({
       state.error = null;
     },
 
+    fetchHostReservationsSuccess: (state, action) => {
+      state.loading = false;
+      state.hostReservations = action.payload;
+      state.error = null;
+    },
+
     createReservationSuccess: (state, action) => {
       state.loading = false;
       state.currentReservation = action.payload;
@@ -34,6 +41,9 @@ const reservationSlice = createSlice({
     deleteReservationSuccess: (state, action) => {
       state.loading = false;
       state.userReservations = state.userReservations.filter(
+        reservation => reservation._id !== action.payload
+      );
+      state.hostReservations = state.hostReservations.filter(
         reservation => reservation._id !== action.payload
       );
       state.error = null;
@@ -57,6 +67,7 @@ const reservationSlice = createSlice({
 export const {
   reservationRequest,
   fetchReservationsSuccess,
+  fetchHostReservationsSuccess,
   createReservationSuccess,
   deleteReservationSuccess,
   reservationFailure,

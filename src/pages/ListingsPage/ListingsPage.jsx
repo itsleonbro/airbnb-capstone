@@ -14,7 +14,8 @@ const ListingsPage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const { token, role } = useSelector(state => state.auth);
+  const token = useSelector(state => state.auth.token);
+  const role = useSelector(state => state.auth.role);
 
   useEffect(() => {
     if (!token || role !== "host") {
@@ -66,19 +67,19 @@ const ListingsPage = () => {
       <div className={styles.listing}>
         <div className={styles.options}>
           <button onClick={() => navigate("/admin/reservations")}>
-            View reservations
+            View Reservations
           </button>
           <button onClick={() => navigate("/admin/view-listings")}>
-            View listings
+            View Listings
           </button>
           <button onClick={() => navigate("/admin/create-listing")}>
-            Create listing
+            Create Listing
           </button>
         </div>
 
-        <h2 className={styles.title}>My hotel listings</h2>
+        <h2 className={styles.title}>My Hotel Listings</h2>
 
-        {loading && <p>loading listings...</p>}
+        {loading && <p>Loading listings...</p>}
         {error && <p className={styles.error}>{error}</p>}
 
         <div className={styles.eachListing}>
