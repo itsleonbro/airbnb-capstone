@@ -7,6 +7,11 @@
   padding: 15px 0;
 }
 
+.leftSection {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
   flex: 0 0 auto;
   z-index: 3;
@@ -50,6 +55,7 @@ a {
   border: none;
   color: #fff;
   font-size: 24px;
+  margin-right: 16px;
 }
 
 /* responsiveness */
@@ -98,6 +104,10 @@ a {
   .rightMenu ul {
     gap: 10px;
   }
+
+  .languageIcon {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -110,7 +120,9 @@ a {
   }
 
   .centerMenu {
+    margin: 50px 0;
     position: fixed;
+    height: 100dvh;
     top: 0;
     left: 0;
     right: 0;
@@ -140,4 +152,3 @@ a {
     display: none;
   }
 }
-

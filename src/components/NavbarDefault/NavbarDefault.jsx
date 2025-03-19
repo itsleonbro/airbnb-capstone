@@ -29,23 +29,25 @@ const NavbarDefault = () => {
     <>
       <nav>
         <div className={styles.navContainer}>
-          <div className={styles.logo}>
-            <Link to="/home">
-              <img
-                src="/assets/airbnb-white.svg"
-                alt="Airbnb logo"
-                height={32}
-              />
-            </Link>
+          <div className={styles.leftSection}>
+            <button
+              className={styles.mobileMenuToggle}
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+            
+            <div className={styles.logo}>
+              <Link to="/home">
+                <img
+                  src="/assets/airbnb-white.svg"
+                  alt="Airbnb logo"
+                  height={32}
+                />
+              </Link>
+            </div>
           </div>
-
-          <button
-            className={styles.mobileMenuToggle}
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
 
           <div
             className={`${styles.centerMenu} ${
@@ -71,7 +73,7 @@ const NavbarDefault = () => {
                 </Link>
               )}
 
-              <li>
+              <li className={styles.languageIcon}>
                 <LanguageRoundedIcon sx={{ color: "#fff" }} />
               </li>
 
