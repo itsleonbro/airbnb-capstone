@@ -131,7 +131,8 @@ const ListingDetailsPage = () => {
         <div className={styles.mainContent}>
           <section className={styles.hostSection}>
             <h2>
-              {listing.type} hosted by {listing.host}
+              {listing.type.charAt(0).toUpperCase() + listing.type.slice(1)}{" "}
+              hosted by {listing.host}
             </h2>
             <p>
               {listing.guests} guests · {listing.bedrooms} bedrooms ·{" "}
