@@ -178,6 +178,10 @@
   margin-bottom: 4px;
 }
 
+.description {
+  white-space: pre-wrap;
+}
+
 .descriptionSection h2,
 .amenitiesSection h2,
 .specificRatingsSection h2 {
