@@ -277,6 +277,20 @@
 }
 
 @media (max-width: 480px) {
+  .heroImg {
+    padding: 15px;
+    height: 450px;
+  }
+
+  .heroOverlay {
+    top: 60%;
+  }
+
+  .heroOverlay h2 {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+
   .inspirationHotelCards {
     gap: 15px;
   }
