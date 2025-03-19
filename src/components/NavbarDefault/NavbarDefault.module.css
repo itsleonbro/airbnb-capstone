@@ -141,8 +141,3 @@ a {
   }
 }
 
-@media (max-width: 480px) {
-  .popup {
-    right: -50%;
-  }
-}
