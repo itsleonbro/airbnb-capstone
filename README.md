@@ -14,10 +14,25 @@ This project is a clone of Airbnb's core functionality, demonstrating full-stack
 
 ## Technologies Used
 
-- Frontend: React.js
+- Frontend: React.js with Vite
+- State Management: Redux Toolkit
+- Styling: CSS Modules
 - Backend: Express, Node.js
 - Database: MongoDB
+- Image Uploads: Multer
 - Authentication: JWT
+
+### Additional Tools
+
+- react-router-dom
+- react-datepicker
+- axios
+- express
+- mongoose
+- jsonwebtoken
+- bcryptjs
+- cors
+- helmet
 
 ## Installation
 
@@ -28,10 +43,13 @@ npm run dev
 
 ## Usage
 
-1. Create an account
-2. Browse listings
-3. Make bookings
-4. Leave reviews
+## Usage
+
+- Create an account (choose between host/user roles)
+- Browse available listings with filtering options
+- Make bookings for available dates
+- Manage your bookings in the user dashboard
+- If registered as a host, create and manage your listings
 
 ## License
 
