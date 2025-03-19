@@ -7,11 +7,13 @@ const ListingsCard = ({ listing, onDelete, onEdit }) => {
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-  // use the first image from the listing or a placeholder IF no imgs
-  const mainImage =
-    listing?.images?.length > 0
-      ? `${API_BASE_URL}/${listing.images[0].path}`
-      : "/assets/listingimg.png";
+  const getImageUrl = () => {
+    if (listing?.images && listing.images.length > 0) {
+      const filename = listing.images[0].path.split("/").pop();
+      return `${API_BASE_URL}/uploads/${filename}`;
+    }
+    return "/assets/listingimg.png";
+  };
 
   const handleCardClick = e => {
     // Prevent click if user clicked on buttons
@@ -25,7 +27,7 @@ const ListingsCard = ({ listing, onDelete, onEdit }) => {
     <div>
       <div className={styles.cardContainer} onClick={handleCardClick}>
         <div className={styles.leftSide}>
-          <img src={mainImage} alt={listing?.title || "Accommodation"} />
+          <img src={getImageUrl()} alt={listing?.title || "Accommodation"} />
           <button
             className={styles.updateBtn}
             onClick={e => {

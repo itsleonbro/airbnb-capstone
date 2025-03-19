@@ -30,8 +30,10 @@ const CreateListingForm = () => {
   });
 
   const [images, setImages] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = e => {
@@ -64,13 +66,40 @@ const CreateListingForm = () => {
   };
 
   const handleImageChange = e => {
-    setImages([...e.target.files]);
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+
+      // Set the files for upload
+      setImages(prevImages => [...prevImages, ...filesArray]);
+
+      // Create previews
+      const previewsArray = filesArray.map(file => ({
+        file,
+        preview: URL.createObjectURL(file),
+      }));
+
+      setImagePreviews(prevPreviews => [...prevPreviews, ...previewsArray]);
+
+      // Clear the input to allow selecting the same file again
+      e.target.value = null;
+    }
+  };
+
+  const removeImage = index => {
+    // Remove from previews array
+    setImagePreviews(prevPreviews =>
+      prevPreviews.filter((_, i) => i !== index)
+    );
+
+    // Remove from files array
+    setImages(prevImages => prevImages.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setSuccessMessage("");
 
     try {
       const data = new FormData();
@@ -99,10 +128,15 @@ const CreateListingForm = () => {
         },
       });
 
-      navigate("/admin/view-listings");
+      setSuccessMessage("Listing created successfully!");
+
+      setTimeout(() => {
+        navigate("/admin/view-listings");
+      }, 1500);
     } catch (err) {
-      setError(err.response?.data?.message || "failed to create listing");
-      console.error("error creating listing:", err);
+      setError(err.response?.data?.message || "Failed to create listing");
+      console.error("Error creating listing:", err);
+      window.scrollTo(0, 0); 
     } finally {
       setLoading(false);
     }
@@ -110,11 +144,13 @@ const CreateListingForm = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>create new listing</h2>
-      {error && <p className={styles.error}>{error}</p>}
+      <h2>Create New Listing</h2>
+
+      {error && <div className={styles.error}>{error}</div>}
+      {successMessage && <div className={styles.success}>{successMessage}</div>}
 
       <div className={styles.formGroup}>
-        <label>title*</label>
+        <label>Title*</label>
         <input
           type="text"
           name="title"
@@ -126,23 +162,23 @@ const CreateListingForm = () => {
 
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
-          <label>type*</label>
+          <label>Type*</label>
           <select
             name="type"
             value={formData.type}
             onChange={handleChange}
             required
           >
-            <option value="">select type</option>
-            <option value="apartment">apartment</option>
-            <option value="house">house</option>
-            <option value="room">private room</option>
-            <option value="hotel">hotel room</option>
+            <option value="">Select Type</option>
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="room">Private Room</option>
+            <option value="hotel">Hotel Room</option>
           </select>
         </div>
 
         <div className={styles.formGroup}>
-          <label>location*</label>
+          <label>Location*</label>
           <input
             type="text"
             name="location"
@@ -155,7 +191,7 @@ const CreateListingForm = () => {
 
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
-          <label>guests*</label>
+          <label>Guests*</label>
           <input
             type="number"
             name="guests"
@@ -167,7 +203,7 @@ const CreateListingForm = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label>bedrooms*</label>
+          <label>Bedrooms*</label>
           <input
             type="number"
             name="bedrooms"
@@ -179,7 +215,7 @@ const CreateListingForm = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label>bathrooms*</label>
+          <label>Bathrooms*</label>
           <input
             type="number"
             name="bathrooms"
@@ -193,7 +229,7 @@ const CreateListingForm = () => {
 
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
-          <label>price per night*</label>
+          <label>Price per Night (R)*</label>
           <input
             type="number"
             name="price"
@@ -205,7 +241,7 @@ const CreateListingForm = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label>weekly discount (%)</label>
+          <label>Weekly Discount (%)</label>
           <input
             type="number"
             name="weeklyDiscount"
@@ -219,7 +255,7 @@ const CreateListingForm = () => {
 
       <div className={styles.formRow}>
         <div className={styles.formGroup}>
-          <label>cleaning fee</label>
+          <label>Cleaning Fee (R)</label>
           <input
             type="number"
             name="cleaningFee"
@@ -230,7 +266,7 @@ const CreateListingForm = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label>service fee</label>
+          <label>Service Fee (R)</label>
           <input
             type="number"
             name="serviceFee"
@@ -241,7 +277,7 @@ const CreateListingForm = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label>occupancy taxes</label>
+          <label>Occupancy Taxes (R)</label>
           <input
             type="number"
             name="occupancyTaxes"
@@ -253,28 +289,28 @@ const CreateListingForm = () => {
       </div>
 
       <div className={styles.formGroup}>
-        <label>amenities</label>
+        <label>Amenities</label>
         <select
           name="amenities"
           multiple
           value={formData.amenities}
           onChange={handleChange}
         >
-          <option value="wifi">wifi</option>
-          <option value="kitchen">kitchen</option>
-          <option value="washer">washer</option>
-          <option value="dryer">dryer</option>
-          <option value="ac">air conditioning</option>
-          <option value="heating">heating</option>
-          <option value="pool">pool</option>
-          <option value="tv">tv</option>
-          <option value="parking">free parking</option>
+          <option value="wifi">WiFi</option>
+          <option value="kitchen">Kitchen</option>
+          <option value="washer">Washer</option>
+          <option value="dryer">Dryer</option>
+          <option value="ac">Air Conditioning</option>
+          <option value="heating">Heating</option>
+          <option value="pool">Pool</option>
+          <option value="tv">TV</option>
+          <option value="parking">Free Parking</option>
         </select>
-        <small>hold ctrl/cmd to select multiple</small>
+        <small>Hold Ctrl/Cmd to select multiple</small>
       </div>
 
       <div className={styles.formGroup}>
-        <label>description*</label>
+        <label>Description*</label>
         <textarea
           name="description"
           value={formData.description}
@@ -282,17 +318,6 @@ const CreateListingForm = () => {
           required
           rows={5}
         />
-      </div>
-
-      <div className={styles.formGroup}>
-        <label>images</label>
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-        <small>select multiple images</small>
       </div>
 
       <div className={styles.checkboxGroup}>
@@ -304,7 +329,7 @@ const CreateListingForm = () => {
             checked={formData.enhancedCleaning}
             onChange={handleChange}
           />
-          <label htmlFor="enhancedCleaning">enhanced cleaning</label>
+          <label htmlFor="enhancedCleaning">Enhanced Cleaning</label>
         </div>
 
         <div>
@@ -315,16 +340,72 @@ const CreateListingForm = () => {
             checked={formData.selfCheckIn}
             onChange={handleChange}
           />
-          <label htmlFor="selfCheckIn">self check-in</label>
+          <label htmlFor="selfCheckIn">Self Check-in</label>
         </div>
       </div>
 
+      {/* Images Upload Section */}
+      <div className={styles.imagesSection}>
+        <h3>Upload Images</h3>
+        <div className={styles.uploadSection}>
+          <label className={styles.uploadLabel}>
+            <span>Select Images</span>
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageChange}
+              className={styles.fileInput}
+            />
+          </label>
+          <small>Select multiple images (JPG, PNG, GIF)</small>
+        </div>
+
+        {/* Image Previews */}
+        {imagePreviews.length > 0 && (
+          <div className={styles.imageGrid}>
+            {imagePreviews.map((image, index) => (
+              <div key={index} className={styles.imageContainer}>
+                <img
+                  src={image.preview}
+                  alt={`Upload ${index + 1}`}
+                  className={styles.imagePreview}
+                />
+                <button
+                  type="button"
+                  className={styles.removeImageBtn}
+                  onClick={() => removeImage(index)}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
       <div className={styles.formActions}>
-        <button type="button" onClick={() => navigate("/admin/view-listings")}>
-          cancel
+        <button
+          type="button"
+          onClick={() => navigate("/admin/view-listings")}
+          className={styles.cancelButton}
+          disabled={loading}
+        >
+          Cancel
         </button>
-        <button type="submit" disabled={loading}>
-          {loading ? "creating..." : "create listing"}
+        <button
+          type="submit"
+          className={styles.submitButton}
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <span className={styles.spinner}></span>
+              Creating...
+            </>
+          ) : (
+            "Create Listing"
+          )}
         </button>
       </div>
     </form>

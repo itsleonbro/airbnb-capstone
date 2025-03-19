@@ -59,7 +59,10 @@ const MyBookings = () => {
 
   const getImageUrl = accommodation => {
     if (accommodation.images && accommodation.images.length > 0) {
-      return `${API_BASE_URL}/${accommodation.images[0].path}`;
+      const imagePath = accommodation.images[0].path;
+
+      const cleanPath = imagePath.replace(/^uploads\//, "");
+      return `${API_BASE_URL}/uploads/${cleanPath}`;
     }
     return "/assets/listingimg.png";
   };

@@ -77,7 +77,7 @@ const BrowseListings = () => {
   const handleSubmitFilters = e => {
     e.preventDefault();
 
-    // update url with current filters
+        // update url with current filters
     const queryParams = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
       if (value) queryParams.append(key, value);
@@ -93,6 +93,16 @@ const BrowseListings = () => {
 
   const formatPrice = price => {
     return `R${price.toLocaleString()}`;
+  };
+
+  const getImageUrl = listing => {
+    if (listing.images && listing.images.length > 0) {
+      const imagePath = listing.images[0].path;
+
+      const cleanPath = imagePath.replace(/^uploads\//, "");
+      return `${API_BASE_URL}/uploads/${cleanPath}`;
+    }
+    return "/assets/listingimg.png";
   };
 
   const formatDateRange = () => {
@@ -205,7 +215,7 @@ const BrowseListings = () => {
               <div className={styles.imageContainer}>
                 {listing.images && listing.images.length > 0 ? (
                   <img
-                    src={`${API_BASE_URL}/${listing.images[0].path}`}
+                    src={getImageUrl(listing)}
                     alt={listing.title}
                     className={styles.listingImage}
                   />

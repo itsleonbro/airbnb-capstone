@@ -38,6 +38,13 @@ const ListingDetailsPage = () => {
     navigate(`/admin/edit-listing/${id}`);
   };
 
+  const getImageUrl = image => {
+    if (!image || !image.path) return "/assets/listingimg.png";
+
+    const cleanPath = image.path.replace(/^uploads\//, "");
+    return `${API_BASE_URL}/uploads/${cleanPath}`;
+  };
+
   if (loading) {
     return (
       <div className={styles.container}>
@@ -78,15 +85,14 @@ const ListingDetailsPage = () => {
     );
   }
 
-  // deefine image sources with fallback
   const mainImage =
     listing.images && listing.images.length > 0
-      ? `${API_BASE_URL}/${listing.images[0].path}`
+      ? getImageUrl(listing.images[0])
       : "/assets/listingimg.png";
 
   const additionalImages =
     listing.images && listing.images.length > 1
-      ? listing.images.slice(1, 5).map(img => `${API_BASE_URL}/${img.path}`)
+      ? listing.images.slice(1, 5).map(img => getImageUrl(img))
       : Array(4).fill("/assets/listingimg.png");
 
   return (
