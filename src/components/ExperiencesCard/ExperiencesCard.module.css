@@ -59,7 +59,7 @@
 /* Media queries for responsiveness */
 @media (max-width: 1024px) {
   .imageWrapper {
-    padding-bottom: 65%; /* Slightly taller on medium screens */
+    padding-bottom: 65%;
   }
 
   .overlay h2 {
@@ -87,7 +87,7 @@
 
 @media (max-width: 480px) {
   .imageWrapper {
-    padding-bottom: 75%; /* Taller on mobile */
+    padding-bottom: 75%;
   }
 
   .overlay h2 {

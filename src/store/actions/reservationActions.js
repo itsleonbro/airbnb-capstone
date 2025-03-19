@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   reservationRequest,
   fetchReservationsSuccess,
+  fetchHostReservationsSuccess,
   createReservationSuccess,
   deleteReservationSuccess,
   reservationFailure,
@@ -27,6 +28,28 @@ export const fetchUserReservations = () => async (dispatch, getState) => {
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Failed to fetch reservations";
+    dispatch(reservationFailure(errorMessage));
+    return { success: false, error: errorMessage };
+  }
+};
+
+export const fetchHostReservations = () => async (dispatch, getState) => {
+  try {
+    dispatch(reservationRequest());
+
+    const { token } = getState().auth;
+
+    const response = await axios.get(`${API_BASE_URL}/api/reservations/host`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    dispatch(fetchHostReservationsSuccess(response.data));
+    return { success: true };
+  } catch (error) {
+    const errorMessage =
+      error.response?.data?.message || "Failed to fetch host reservations";
     dispatch(reservationFailure(errorMessage));
     return { success: false, error: errorMessage };
   }

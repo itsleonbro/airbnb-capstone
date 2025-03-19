@@ -1,0 +1,316 @@
+.container {
+  width: 100%;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #717171;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--pink);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--grey-border);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.tabButton {
+  position: relative;
+  padding: 1rem 1.5rem;
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #717171;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.tabButton.active {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.tabButton.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--blue);
+  transition: width 0.3s ease;
+}
+
+.tabButton:hover {
+  color: var(--blue);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  margin-left: 8px;
+  background-color: var(--blue);
+  color: white;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bookingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bookingCard {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--grey-border);
+  border-radius: 12px;
+  background-color: white;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.bookingCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.imageContainer {
+  width: 100%;
+  height: 175px;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.accommodationImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.bookingCard:hover .accommodationImage {
+  transform: scale(1.05);
+}
+
+.bookingDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.bookingDetails h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.location {
+  font-size: 14px;
+  color: #717171;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.location::before {
+  content: "📍";
+  margin-right: 6px;
+  font-size: 16px;
+}
+
+.guestInfo {
+  margin-bottom: 0.75rem;
+  background-color: #f0f7ff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.guestName {
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.dateRange {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  background-color: #f8f8f8;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-flex;
+  width: fit-content;
+}
+
+.dateSeparator {
+  margin: 0 8px;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.bookingMeta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  color: #222;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.guests {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.guests::before {
+  content: "👤";
+  margin-right: 6px;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--blue);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.viewButton,
+.contactButton {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewButton {
+  background-color: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  color: #333;
+}
+
+.contactButton {
+  background-color: white;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+}
+
+.viewButton:hover {
+  background-color: #e5e5e5;
+}
+
+.contactButton:hover {
+  background-color: #f0f7ff;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #717171;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+}
+
+.emptyState p {
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.createButton {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.createButton:hover {
+  background-color: #3140c2;
+}
+
+@media (max-width: 768px) {
+  .bookingCard {
+    grid-template-columns: 1fr;
+  }
+
+  .imageContainer {
+    height: 200px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .viewButton,
+  .contactButton {
+    width: 100%;
+    text-align: center;
+  }
+}
