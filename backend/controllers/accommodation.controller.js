@@ -1,4 +1,13 @@
 const Accommodation = require("../models/accommodation.model");
+const fs = require("fs");
+const path = require("path");
+
+const deleteFile = filePath => {
+  const fullPath = path.join(__dirname, "..", "..", filePath);
+  if (fs.existsSync(fullPath)) {
+    fs.unlinkSync(fullPath);
+  }
+};
 
 // create new accommodation
 exports.createAccommodation = async (req, res) => {
@@ -23,10 +32,20 @@ exports.createAccommodation = async (req, res) => {
       });
     }
 
+    // process uploaded files
+    let images = [];
+    if (req.files && req.files.length > 0) {
+      images = req.files.map(file => ({
+        filename: file.filename,
+        path: file.path,
+        originalname: file.originalname,
+      }));
+    }
+
     const accommodation = new Accommodation({
       ...req.body,
       host_id: req.userId, // from auth middleware
-      ...(req.body.images && { images: req.body.images }),
+      images: images,
       createdAt: new Date(),
     });
 
@@ -119,12 +138,42 @@ exports.updateAccommodation = async (req, res) => {
 
     // handle image updates if files are included
     const updateData = { ...req.body };
+
+    if (req.body.imagesToDelete) {
+      try {
+        const imagesToDelete = JSON.parse(req.body.imagesToDelete);
+
+        accommodation.images = accommodation.images.filter(image => {
+          const shouldDelete = imagesToDelete.includes(image._id.toString());
+
+          if (shouldDelete) {
+            try {
+              deleteFile(image.path);
+            } catch (fileError) {
+              console.error("Error deleting file:", fileError);
+            }
+          }
+
+          return !shouldDelete;
+        });
+      } catch (parseError) {
+        console.error("Error parsing imagesToDelete:", parseError);
+      }
+    }
+
+    // process new images if any
     if (req.files && req.files.length > 0) {
-      updateData.images = req.files.map(file => ({
+      const newImages = req.files.map(file => ({
         filename: file.filename,
         path: file.path,
         originalname: file.originalname,
       }));
+
+      // merge with existing images
+      updateData.images = [...accommodation.images, ...newImages];
+    } else {
+      // keep existing images (minus any deleted ones)
+      updateData.images = accommodation.images;
     }
 
     const updatedAccommodation = await Accommodation.findByIdAndUpdate(
@@ -156,6 +205,17 @@ exports.deleteAccommodation = async (req, res) => {
       return res
         .status(403)
         .json({ message: "Not authorized to delete this accommodation" });
+    }
+
+    // delet associated image files
+    if (accommodation.images && accommodation.images.length > 0) {
+      accommodation.images.forEach(image => {
+        try {
+          deleteFile(image.path);
+        } catch (fileError) {
+          console.error("Error deleting file:", fileError);
+        }
+      });
     }
 
     await Accommodation.findByIdAndDelete(req.params.id);
