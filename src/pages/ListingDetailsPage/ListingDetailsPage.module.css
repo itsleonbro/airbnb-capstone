@@ -89,22 +89,26 @@
 
 .imageGallery {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(2, 250px);
   grid-gap: 10px;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 48px;
+  height: 410px;
 }
 
 .mainImage {
   grid-row: span 2;
-  height: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .mainImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .thumbnails {
@@ -112,17 +116,25 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 10px;
+  height: 100%;
 }
 
 .thumbnail {
-  width: 100%;
-  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
 }
 
 .thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover img {
+  transform: scale(1.05);
 }
 
 .contentContainer {
@@ -184,6 +196,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  text-transform: capitalize;
 }
 
 .amenityIcon {
@@ -322,6 +335,12 @@
 @media (max-width: 768px) {
   .imageGallery {
     grid-template-columns: 1fr;
+    grid-template-rows: 300px;
+    height: auto;
+  }
+
+  .mainImage {
+    grid-row: 1;
   }
 
   .thumbnails {

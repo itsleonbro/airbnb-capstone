@@ -20,6 +20,15 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  width: 300px;
+}
+
+.leftSide img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .leftSide button {
@@ -39,11 +48,22 @@
   background-color: var(--pink);
 }
 
-.leftSide img {
-  height: 200px;
-  border-radius: 10px;
-}
-
 .viewDetailsLink {
   cursor: pointer;
+}
+
+/* responsiveness */
+@media (max-width: 768px) {
+  .cardContainer {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .leftSide {
+    width: 100%;
+  }
+
+  .leftSide img {
+    height: 240px;
+  }
 }
