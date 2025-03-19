@@ -17,11 +17,32 @@ require("dotenv").config();
 
 const app = express();
 
+const corsOptions = {
+  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  exposedHeaders: ["Content-Disposition", "Authorization"],
+};
+
 // middleware
-app.use(helmet());
-app.use(cors());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+
+// CORS headers on the /uploads route
+app.use(
+  "/uploads",
+  (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+    next();
+  },
+  express.static("uploads")
+);
 
 // MongoDB Connection
 mongoose
@@ -34,7 +55,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/accommodations", accommodationRoutes);
 app.use("/api/reservations", reservationRoutes);
 
-// errror middleware
+// error middleware
 app.use(errorMiddleware);
 
 // start server
